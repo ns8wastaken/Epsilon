@@ -1,0 +1,16 @@
+[workspace]
+members = [
+    ".",
+    "src/board/piece_macros",
+    "tools/magics_finders"
+]
+
+[package]
+name = "Epsilon"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+crossterm = "0.29.0"
+piece_macros = { path = "src/board/piece_macros" }
+rand = "0.9.1"
