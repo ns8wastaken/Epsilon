@@ -1,5 +1,3 @@
-// mod zobrist;
-// mod transposition_table;
 mod board;
 mod movegen;
 mod debug;

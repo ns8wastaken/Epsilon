@@ -154,7 +154,7 @@ impl UciParser {
         let mut io = UciIO::new();
 
         let mut board = Board::startpos();
-        let mut tt = TranspositionTable::new(1 << 20);
+        let mut tt = TranspositionTable::new(16);
 
         while let Some(input) = io.input() {
             if input.is_empty() {

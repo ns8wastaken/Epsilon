@@ -92,8 +92,6 @@ impl Search {
     }
 
     pub fn alphabeta(board: &mut Board, tt: &mut TranspositionTable, depth: u8) -> Move {
-        tt.clear();
-
         let mut best_score = i16::MIN + 1;
         let mut best_move: Option<Move> = None;
 

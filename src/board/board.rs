@@ -15,7 +15,7 @@ use super::{
 };
 
 pub struct Board {
-    bitboards: [Bitboard; 12],
+    bitboards: [Bitboard; PIECETYPE_COUNT * 2],
     mailbox: Mailbox,
     occupied: Occupied,
     color_to_move: Color,
@@ -356,10 +356,9 @@ impl Board {
         // Save in the annals of time
         self.save_state();
 
-        let moving_piece = self.mailbox
+        let moving_piece = *self.mailbox
             .get_piece(mv.from)
-            .unwrap()
-            .clone();
+            .unwrap();
 
         let is_white = moving_piece.color.is_white();
 

@@ -22,10 +22,12 @@ pub struct TranspositionTable {
 }
 
 impl TranspositionTable {
-    pub fn new(size: usize) -> Self {
+    pub fn new(size_mb: usize) -> Self {
+        let entry_size = std::mem::size_of::<TTEntry>();
+        let size = (size_mb * 1_000_000) / entry_size;
         Self {
             table: vec![None; size],
-            size,
+            size
         }
     }
 
@@ -54,15 +56,16 @@ impl TranspositionTable {
     #[inline(always)]
     pub fn retrieve(&self, key: u64) -> Option<TTEntry> {
         match self.table[(key as usize) % self.size] {
+            // TODO: See if this is wrong (no if)
             Some(e) if e.key == key => Some(e),
             _ => None,
         }
     }
 
-    #[inline(always)]
-    pub fn clear(&mut self) {
-        for i in 0..self.table.len() {
-            self.table[i] = None;
-        }
-    }
+    // #[inline(always)]
+    // pub fn clear(&mut self) {
+    //     for i in 0..self.table.len() {
+    //         self.table[i] = None;
+    //     }
+    // }
 }

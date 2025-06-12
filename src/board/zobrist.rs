@@ -1,5 +1,5 @@
 use rand::Rng;
-use crate::board::{Color, Board, PIECETYPE_COUNT};
+use super::PIECETYPE_COUNT;
 
 pub struct Zobrist {
     pub pieces: [u64; 64 * PIECETYPE_COUNT * 2],
@@ -39,39 +39,4 @@ impl Zobrist {
         debug_assert!(square < 64);
         (color * PIECETYPE_COUNT + piece_type) * 64 + square as usize
     }
-
-    // pub fn get_hash(&self, board: &Board) -> u64 {
-    //     let mut hash = 0;
-    //
-    //     // Hash pieces
-    //     for square in 0..64 {
-    //         if let Some(piece) = board.get_piece(square) {
-    //             hash ^= self.pieces[Self::index(
-    //                 piece.color.index(),
-    //                 piece.piece_type as usize,
-    //                 square
-    //             )];
-    //         }
-    //     }
-    //
-    //     // Hash side to move
-    //     if board.color_to_move() == &Color::White {
-    //         hash ^= self.side_to_move;
-    //     }
-    //
-    //     // Hash castling rights
-    //     let castling_rights = board.get_castling_rights();
-    //     if castling_rights.white_king_side  { hash ^= self.castling_rights[0]; }
-    //     if castling_rights.white_queen_side { hash ^= self.castling_rights[1]; }
-    //     if castling_rights.black_king_side  { hash ^= self.castling_rights[2]; }
-    //     if castling_rights.black_queen_side { hash ^= self.castling_rights[3]; }
-    //
-    //     // Hash en passant
-    //     if let Some(ep_square) = board.get_en_passant_square() {
-    //         let file = ep_square % 8;
-    //         hash ^= self.en_passant_file[file as usize];
-    //     }
-    //
-    //     hash
-    // }
 }

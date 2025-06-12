@@ -36,7 +36,7 @@ impl Move {
             Some('b') | Some('B') => MoveType::Promotion(PieceType::Bishop),
             Some('r') | Some('R') => MoveType::Promotion(PieceType::Rook),
             Some('q') | Some('Q') => MoveType::Promotion(PieceType::Queen),
-            None => MoveType::Unknown,
+            None => MoveType::Quiet,
             _ => panic!(),
         };
 

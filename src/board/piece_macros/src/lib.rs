@@ -44,12 +44,5 @@ pub fn define_pieces(input: TokenStream) -> TokenStream {
     output.push('}');
     output.push_str(&format!("pub const PIECETYPE_COUNT: usize = {};", pieces.len()));
 
-    // output.push_str(&format!("{} pub enum Piece {{", derives));
-    // for (i, &piece) in pieces.iter().enumerate() {
-    //     output.push_str(&format!("White{} = {},", piece, i + 1));
-    //     output.push_str(&format!("Black{} = {},", piece, i + 9));
-    // }
-    // output.push('}');
-
     output.parse().unwrap()
 }

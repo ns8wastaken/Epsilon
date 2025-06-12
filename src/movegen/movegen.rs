@@ -114,7 +114,7 @@ impl MoveGen {
             let mut quiet_moves = Self::moves(board, &piece.piece_type, &piece.color, from_square);
             while quiet_moves != 0 {
                 let to_square = quiet_moves.trailing_zeros() as u8;
-                quiet_moves &= quiet_moves - 1; // Pop lsb
+                quiet_moves &= quiet_moves - 1;
 
                 if (piece.piece_type == PieceType::Pawn) && (to_square < 8 || to_square >= 56) {
                     add_promotions!(moves, from_square, to_square);
@@ -128,7 +128,7 @@ impl MoveGen {
             let mut capture_moves = Self::attacks(board, &piece.piece_type, &piece.color, from_square);
             while capture_moves != 0 {
                 let to_square = capture_moves.trailing_zeros() as u8;
-                capture_moves &= capture_moves - 1; // Pop lsb
+                capture_moves &= capture_moves - 1;
 
                 if piece.piece_type == PieceType::Pawn {
                     if to_square < 8 || to_square >= 56 {
